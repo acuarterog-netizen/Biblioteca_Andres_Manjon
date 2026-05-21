@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca de Dictados - CEIP Andr&eacute;s Manj&oacute;n</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ESTILOS COMPLETOS - IGUAL QUE ANTES */
+        :root {
+            --color-primary: #2c5530;
+            --color-secondary: #739e73;
+            --color-accent: #d4a574;
+            --color-light: #f8f5f0;
+            --color-dark: #1a1a1a;
+            --color-gray: #6c757d;
+            --color-border: #e0d6c9;
+            --color-hover: #e8f4e8;
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --border-radius: 16px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--color-dark);
+            background: linear-gradient(135deg, #f0f7f0 0%, #e8f0e8 100%);
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .main-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #1e3a23 100%);
+            color: white;
+            padding: 50px 0 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-header h1 {
+            font-family: 'Lora', serif;
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .main-header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto 25px;
+            position: relative;
+            font-weight: 300;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--color-accent);
+            color: var(--color-dark);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .nav-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-light);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+
+        .nav-tab {
+            padding: 20px 35px;
+            font-weight: 600;
+            color: var(--color-gray);
+            text-decoration: none;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            color: var(--color-primary);
+            background-color: var(--color-hover);
+            border-bottom: 3px solid var(--color-accent);
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .dictados-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+
+        .section-header {
+            background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+            color: white;
+            padding: 25px 35px;
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dictados-container {
+            padding: 35px;
+        }
+
+        .dictado-card {
+            margin-bottom: 25px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .dictado-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .dictado-card-header {
+            display: flex;
+            align-items: center;
+            padding: 25px 30px;
+            background-color: var(--color-light);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .dictado-card-header:hover {
+            background-color: var(--color-hover);
+        }
+
+        .dictado-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--color-accent), #e6b17e);
+            color: var(--color-dark);
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 1.4rem;
+            margin-right: 25px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(212, 165, 116, 0.3);
+        }
+
+        .dictado-info {
+            flex: 1;
+        }
+
+        .dictado-info h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--color-primary);
+        }
+
+        .dictado-desc {
+            color: var(--color-gray);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .dictado-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: #e9f5e9;
+            color: var(--color-primary);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .tag.level-basic {
+            background-color: #e9f5e9;
+            color: #2c5530;
+        }
+
+        .tag.age {
+            background-color: #e6f0fa;
+            color: #1a3d6d;
+        }
+
+        .dictado-toggle {
+            color: var(--color-secondary);
+            font-size: 1.4rem;
+            transition: var(--transition);
+            margin-left: 15px;
+        }
+
+        .dictado-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease;
+            background-color: white;
+            border-top: 1px solid rgba(224, 214, 201, 0.5);
+        }
+
+        .dictado-card.active .dictado-content {
+            max-height: 1000px;
+        }
+
+        .dictado-card.active .dictado-toggle {
+            transform: rotate(180deg);
+        }
+
+        .dictado-text-container {
+            padding: 35px;
+            background: linear-gradient(to bottom, white, #fdfcf9);
+        }
+
+        .dictado-text-container h4 {
+            font-family: 'Lora', serif;
+            font-size: 1.7rem;
+            color: var(--color-primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--color-accent);
+        }
+
+        .dictado-text {
+            font-size: 1.15rem;
+            margin-bottom: 25px;
+            color: #333;
+            line-height: 1.9;
+            text-align: justify;
+        }
+
+        .dictado-author {
+            font-style: italic;
+            color: var(--color-gray);
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--color-border);
+            font-size: 0.95rem;
+        }
+
+        .dictado-rules {
+            background-color: #f9f7f3;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 25px;
+            border-left: 4px solid var(--color-secondary);
+        }
+
+        .dictado-rules h5 {
+            color: var(--color-primary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .dictado-rules ul {
+            padding-left: 20px;
+            color: #555;
+        }
+
+        .dictado-rules li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .rules-card, .info-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow-medium);
+            border: 1px solid var(--color-border);
+        }
+
+        .sidebar-title {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--color-accent);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .rules-list {
+            list-style-type: none;
+        }
+
+        .rules-list li {
+            margin-bottom: 18px;
+            padding-left: 30px;
+            position: relative;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .rules-list li:before {
+            content: "&bull;";
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: bold;
+            font-size: 1.5rem;
+            top: -3px;
+        }
+
+        .info-box {
+            background-color: var(--color-light);
+            padding: 22px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--color-accent);
+        }
+
+        .info-box h4 {
+            color: var(--color-primary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .info-box p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background-color: #f0f7f0;
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--color-gray);
+            margin-top: 5px;
+        }
+
+        .main-footer {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 25px 0;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .footer-links a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 1100px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header h1 {
+                font-size: 2.5rem;
+            }
+            .nav-container {
+                flex-direction: column;
+            }
+            .dictado-card-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .dictado-number {
+                margin-bottom: 15px;
+            }
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-header {
+                padding: 40px 20px 30px;
+            }
+            .main-header h1 {
+                font-size: 2rem;
+            }
+            .dictados-container, .dictado-text-container {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header con ENTIDADES HTML para acentos -->
+        <header class="main-header">
+            <h1><i class="fas fa-book-open"></i> Biblioteca de Dictados</h1>
+            <p>Textos corregidos autom&aacute;ticamente para practicar ortograf&iacute;a. Recursos del CEIP Andr&eacute;s Manj&oacute;n.</p>
+            <div class="badge">
+                <i class="fas fa-pencil-alt"></i> 9 dictados disponibles - Primer ciclo
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-container">
+            <a href="#" class="nav-tab active"><i class="fas fa-home"></i> Inicio</a>
+            <a href="#" class="nav-tab"><i class="fas fa-graduation-cap"></i> Primer ciclo</a>
+            <a href="#" class="nav-tab"><i class="fas fa-book-reader"></i> Segundo ciclo</a>
+            <a href="#" class="nav-tab"><i class="fas fa-user-graduate"></i> Tercer ciclo</a>
+            <a href="#" class="nav-tab"><i class="fas fa-plus-circle"></i> A&ntilde;adir dictado</a>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="content-wrapper">
+            <!-- Dictados Section -->
+            <main class="dictados-section">
+                <div class="section-header">
+                    <span><i class="fas fa-list-ol"></i> Dictados del Primer Ciclo</span>
+                    <span>Educaci&oacute;n Primaria</span>
+                </div>
+                
+                <div class="dictados-container">
+                    <!-- Dictado 1 - CON ENTIDADES HTML -->
+                    <div class="dictado-card">
+                        <div class="dictado-card-header" onclick="toggleDictado(this)">
+                            <div class="dictado-number">1</div>
+                            <div class="dictado-info">
+                                <h3>El pirata y su loro</h3>
+                                <p class="dictado-desc">Uso de la R y may&uacute;sculas en nombres propios y despu&eacute;s de punto.</p>
+                                <div class="dictado-tags">
+                                    <span class="tag level-basic"><i class="fas fa-star"></i> Nivel b&aacute;sico</span>
+                                    <span class="tag age"><i class="fas fa-child"></i> 6-8 a&ntilde;os</span>
+                                </div>
+                            </div>
+                            <div class="dictado-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="dictado-content">
+                            <div class="dictado-text-container">
+                                <h4>Dictado n&deg; 1</h4>
+                                <div class="dictado-text">
+                                    Hab&iacute;a una vez un pirata que ten&iacute;a un loro y un barco. Con el barco navegaba por todos los mares y con el loro charlaba, porque su loro era un loro parlanch&iacute;n.
+                                </div>
+                                <div class="dictado-author">
+                                    <strong>Autor:</strong> Luis Gonz&aacute;lez Rodr&iacute;guez. Colegio Jarama. Mejorada del Campo.
+                                </div>
+                                <div class="dictado-rules">
+                                    <h5><i class="fas fa-check-circle"></i> Reglas ortogr&aacute;ficas que trabaja:</h5>
+                                    <ul>
+                                        <li>Uso de la R</li>
+                                        <li>Se escribe may&uacute;scula al empezar un escrito, despu&eacute;s de punto y en los nombres propios</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dictado 2 - CON ENTIDADES HTML -->
+                    <div class="dictado-card">
+                        <div class="dictado-card-header" onclick="toggleDictado(this)">
+                            <div class="dictado-number">2</div>
+                            <div class="dictado-info">
+                                <h3>Enrique y Mar&iacute;a</h3>
+                                <p class="dictado-desc">Uso de la R fuerte a principio de palabra y despu&eacute;s de consonantes.</p>
+                                <div class="dictado-tags">
+                                    <span class="tag level-basic"><i class="fas fa-star"></i> Nivel b&aacute;sico</span>
+                                    <span class="tag age"><i class="fas fa-child"></i> 6-8 a&ntilde;os</span>
+                                </div>
+                            </div>
+                            <div class="dictado-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="dictado-content">
+                            <div class="dictado-text-container">
+                                <h4>Dictado n&deg; 2</h4>
+                                <div class="dictado-text">
+                                    Enrique es un se&ntilde;or muy amable. Mar&iacute;a es una se&ntilde;ora que est&aacute; embarazada. Juan iba sentado en el autob&uacute;s y le cedi&oacute; el sitio a Mar&iacute;a. Ella, complacida, le dio las gracias y le regal&oacute; una sonrisa.
+                                </div>
+                                <div class="dictado-author">
+                                    <strong>Autor:</strong> Luis Gonz&aacute;lez Rodr&iacute;guez. Colegio Jarama. Mejorada del Campo.
+                                </div>
+                                <div class="dictado-rules">
+                                    <h5><i class="fas fa-check-circle"></i> Reglas ortogr&aacute;ficas que trabaja:</h5>
+                                    <ul>
+                                        <li>Se escribe una sola R aunque el sonido sea fuerte, a principio de palabra y cuando va a continuaci&oacute;n de las consonantes L, N, S</li>
+                                        <li>Se escribe may&uacute;scula al empezar un escrito, despu&eacute;s de punto y en los nombres propios</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dictado 3 - CON ENTIDADES HTML -->
+                    <div class="dictado-card">
+                        <div class="dictado-card-header" onclick="toggleDictado(this)">
+                            <div class="dictado-number">3</div>
+                            <div class="dictado-info">
+                                <h3>El torero y el rat&oacute;n</h3>
+                                <p class="dictado-desc">Pr&aacute;ctica de la R y uso de may&uacute;sculas en nombres propios.</p>
+                                <div class="dictado-tags">
+                                    <span class="tag level-basic"><i class="fas fa-star"></i> Nivel b&aacute;sico</span>
+                                    <span class="tag age"><i class="fas fa-child"></i> 6-8 a&ntilde;os</span>
+                                </div>
+                            </div>
+                            <div class="dictado-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="dictado-content">
+                            <div class="dictado-text-container">
+                                <h4>Dictado n&deg; 3</h4>
+                                <div class="dictado-text">
+                                    Un torero ten&iacute;a un perro. Al perro le gustaba perseguir ratones. El rat&oacute;n Ram&oacute;n le puso polvos de pica-pica en el hocico y el perro del torero Perico nunca m&aacute;s volvi&oacute; a perseguir ratones.
+                                </div>
+                                <div class="dictado-author">
+                                    <strong>Autor:</strong> Luis Gonz&aacute;lez Rodr&iacute;guez. Colegio Jarama. Mejorada del Campo.
+                                </div>
+                                <div class="dictado-rules">
+                                    <h5><i class="fas fa-check-circle"></i> Reglas ortogr&aacute;ficas que trabaja:</h5>
+                                    <ul>
+                                        <li>Uso de la R</li>
+                                        <li>Se escribe may&uacute;scula al empezar un escrito, despu&eacute;s de punto y en los nombres propios</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dictado 4 - CON ENTIDADES HTML -->
+                    <div class="dictado-card">
+                        <div class="dictado-card-header" onclick="toggleDictado(this)">
+                            <div class="dictado-number">4</div>
+                            <div class="dictado-info">
+                                <h3>Rita y Ra&uacute;l</h3>
+                                <p class="dictado-desc">Ejercicios espec&iacute;ficos para la pr&aacute;ctica de la letra R.</p>
+                                <div class="dictado-tags">
+                                    <span class="tag level-basic"><i class="fas fa-star"></i> Nivel b&aacute;sico</span>
+                                    <span class="tag age"><i class="fas fa-child"></i> 6-8 a&ntilde;os</span>
+                                </div>
+                            </div>
+                            <div class="dictado-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="dictado-content">
+                            <div class="dictado-text-container">
+                                <h4>Dictado n&deg; 4</h4>
+                                <div class="dictado-text">
+                                    Hoy es lunes.<br>
+                                    Rita es amiga de Ra&uacute;l.<br>
+                                    El rat&oacute;n roe una rama rota.<br>
+                                    Las ranas croan en el r&iacute;o.<br>
+                                    La rama del rosal est&aacute; rota.<br>
+                                    La raqueta de Ram&oacute;n es roja.<br>
+                                    Rosa tiene un vestido roto.<br>
+                                    Roberto rompi&oacute; el reloj de Raquel.
+                                </div>
+                                <div class="dictado-author">
+                                    <strong>Autor:</strong> Custodia N&uacute;&ntilde;ez Redondo. Colegio San Jos&eacute; de Bego&ntilde;a. Madrid.
+                                </div>
+                                <div class="dictado-rules">
+                                    <h5><i class="fas fa-check-circle"></i> Reglas ortogr&aacute;ficas que trabaja:</h5>
+                                    <ul>
+                                        <li>Uso de la R</li>
+                                        <li>Se escribe may&uacute;scula al empezar un escrito, despu&eacute;s de punto y en los nombres propios</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dictado 5 - CON ENTIDADES HTML -->
+                    <div class="dictado-card">
+                        <div class="dictado-card-header" onclick="toggleDictado(this)">
+                            <div class="dictado-number">5</div>
+                            <div class="dictado-info">
+                                <h3>Paula y Pepe</h3>
+                                <p class="dictado-desc">Pr&aacute;ctica de las letras P, M y L en combinaciones simples.</p>
+                                <div class="dictado-tags">
+                                    <span class="tag level-basic"><i class="fas fa-star"></i> Nivel b&aacute;sico</span>
+                                    <span class="tag age"><i class="fas fa-child"></i> 6-8 a&ntilde;os</span>
+                                </div>
+                            </div>
+                            <div class="dictado-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="dictado-content">
+                            <div class="dictado-text-container">
+                                <h4>Dictado n&deg; 5</h4>
+                                <div class="dictado-text">
+                                    Paula mima a Pepe y al puma.<br>
+                                    Loli lee muy mal el mil.<br>
+                                    La paloma, el pulpo y la mula.<br>
+                                    Amalia lame la miel y el polo.
+                                </div>
+                                <div class="dictado-author">
+                                    <strong>Autor:</strong> Antonio Fco. Cuadrado Aguilera. Colegio Juan Gris. Madrid.
+                                </div>
+                                <div class="dictado-rules">
+                                    <h5><i class="fas fa-check-circle"></i> Reglas ortogr&aacute;ficas que trabaja:</h5>
+                                    <ul>
+                                        <li>Se escribe may&uacute;scula al empezar un escrito, despu&eacute;s de punto y en los nombres propios</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dictado 6 - CON ENTIDADES HTML -->
+                    <div class="dictado-card">
+                        <div class="dictado-card-header" onclick="toggleDictado(this)">
+                            <div class="dictado-number">6</div>
+                            <div class="dictado-info">
+                                <h3>Mam&aacute; y Adela</h3>
+                                <p class="dictado-desc">Introducci&oacute;n al uso de la letra Q en combinaci&oacute;n con U.</p>
+                                <div class="dictado-tags">
+                                    <span class="tag level-basic"><i class="fas fa-star"></i> Nivel b&aacute;sico</span>
+                                    <span class="tag age"><i class="fas fa-child"></i> 6-8 a&ntilde;os</span>
+                                </div>
+                            </div>
+                            <div class="dictado-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="dictado-content">
+                            <div class="dictado-text-container">
+                                <h4>Dictado n&deg; 6</h4>
+                                <div class="dictado-text">
+                                    Mam&aacute; tapa la pelota lila, Susi la seta y el oso Emilio el tomate.<br>
+                                    Adela come chocolate con queso.<br>
+                                    Quique chuta la pelota.<br>
+                                    Elena tiene ocho canicas.<br>
+                                    Paquita es una hipop&oacute;tama que sale en un cuento.
+                                </div>
+                                <div class="dictado-author">
+                                    <strong>Autor:</strong> M&ordf; Dolores Asorey. Colegio San Miguel. Navalagamella.
+                                </div>
+                                <div class="dictado-rules">
+                                    <h5><i class="fas fa-check-circle"></i> Reglas ortogr&aacute;ficas que trabaja:</h5>
+                                    <ul>
+                                        <li>Uso de la Q</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Reglas de la Biblioteca - CON ENTIDADES HTML -->
+                <div class="rules-card">
+                    <h3 class="sidebar-title"><i class="fas fa-clipboard-list"></i> Reglas de la Biblioteca</h3>
+                    <ul class="rules-list">
+                        <li><strong>USO DE MATERIALES:</strong> Respetamos los materiales. No los rompemos, da&ntilde;amos, pintamos en ellos... As&iacute; todos podr&aacute;n disfrutar de ellos.</li>
+                        <li><strong>TIEMPO DE PR&Eacute;STAMO:</strong> El tiempo de pr&eacute;stamo es de 1 mes. Deber&aacute;s devolver el libro en un m&aacute;ximo de un mes desde la fecha de pr&eacute;stamo.</li>
+                        <li><strong>FUNCIONAMIENTO DE PR&Eacute;STAMO:</strong> Un profesor o bibliotecario escoger&aacute; el libro que t&uacute; quieras.</li>
+                        <li><strong>&iquest;DETERIORO?</strong> Si ves deterioro en un libro que t&uacute; no has causado, d&iacute;selo a un profesor o bibliotecario.</li>
+                        <li><strong>CASTIGOS:</strong> Por supuesto, si t&uacute; has causado da&ntilde;os en un libro, esto conlleva una serie de castigos.</li>
+                    </ul>
+                    <div class="info-box">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Conductas sancionables:</h4>
+                        <p>&bull; Si rompes o da&ntilde;as un libro<br>
+                           &bull; Si no devuelves un libro en el plazo establecido<br>
+                           &bull; Si pintas y/o escribes en un libro</p>
+                    </div>
+                </div>
+
+                <!-- Información del Recurso - CON ENTIDADES HTML -->
+                <div class="info-card">
+                    <h3 class="sidebar-title"><i class="fas fa-info-circle"></i> Sobre estos dictados</h3>
+                    <div class="info-box">
+                        <h4><i class="fas fa-book"></i> Fuente:</h4>
+                        <p>Estos dictados han sido extra&iacute;dos del libro <strong>"Dictados para Educaci&oacute;n Primaria"</strong> de la Comunidad de Madrid, coordinado por Mercedes Ruiz Paz.</p>
+                    </div>
+                    <div class="info-box">
+                        <h4><i class="fas fa-bullseye"></i> Objetivo:</h4>
+                        <p>Mejorar la ortograf&iacute;a y expone a los alumnos a textos de diversa naturaleza, enriqueciendo su vocabulario y proporcion&aacute;ndoles un mayor conocimiento de su idioma.</p>
+                    </div>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-number">9</span>
+                            <span class="stat-label">Dictados</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">6+</span>
+                            <span class="stat-label">Reglas</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Autores</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">1</span>
+                            <span class="stat-label">Ciclo</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Footer - CON ENTIDADES HTML -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <p>Dictados interactivos para practicar ortograf&iacute;a &bull; CEIP Andr&eacute;s Manj&oacute;n</p>
+                <div class="footer-links">
+                    <a href="#"><i class="fas fa-question-circle"></i> &iquest;C&oacute;mo usar esta herramienta?</a>
+                    <a href="#"><i class="fas fa-plus-circle"></i> A&ntilde;adir nuevo dictado</a>
+                    <a href="#"><i class="fas fa-download"></i> Descargar todos los dictados</a>
+                </div>
+                <p class="copyright">
+                    &copy; Material basado en "Dictados para Educaci&oacute;n Primaria" de la Comunidad de Madrid.<br>
+                    Dise&ntilde;o adaptado para la Biblioteca del CEIP Andr&eacute;s Manj&oacute;n.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function toggleDictado(header) {
+            const dictadoCard = header.closest('.dictado-card');
+            dictadoCard.classList.toggle('active');
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstDictado = document.querySelector('.dictado-card');
+            if (firstDictado) {
+                firstDictado.classList.add('active');
+            }
+            
+            const dictadoCards = document.querySelectorAll('.dictado-card');
+            dictadoCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body>
+</html>

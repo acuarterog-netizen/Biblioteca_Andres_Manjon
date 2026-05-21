@@ -1,0 +1,133 @@
+<?php
+session_start();
+
+// 1. Configuración de errores (ACTÍVALO para ver el error real en pantalla)
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+$host = "localhost";
+$usuario = "admin_web";
+$clave = "Biblioteca2026";
+$bd = "sistemabiblioteca";
+$puerto = 3306; 
+
+// 2. Conexión
+$conexion = new mysqli($host, $usuario, $clave, $bd, $puerto);
+
+if ($conexion->connect_error) {
+    die("Error de conexión: " . $conexion->connect_error);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user_input = $_POST['username'];
+    $pass_input = $_POST['contrasena'];
+
+    $sql = "SELECT U.id_usuario, U.contrasena, U.id_rol, R.nombre AS nombre_rol 
+            FROM Usuario U 
+            INNER JOIN Rol R ON U.id_rol = R.id_rol 
+            WHERE U.username = ?";
+
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("s", $user_input);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+
+    if ($resultado->num_rows === 1) {
+        $usuario_db = $resultado->fetch_assoc(); // Cambié el nombre para no confundir con la variable $usuario del inicio
+
+        if (password_verify($pass_input, $usuario_db['contrasena'])) {
+            
+            $_SESSION['usuario_id'] = $usuario_db['id_usuario'];
+            $_SESSION['id_rol']     = $usuario_db['id_rol'];
+            $_SESSION['nombre_rol'] = $usuario_db['nombre_rol'];
+
+            // 3. Redirección corregida
+            switch ($usuario_db['id_rol']) {
+                case 1: // Staff
+                case 2: // Profesor
+                case 3: // Alumno
+                    header("Location: index.php");
+                    break; // Ahora sí detiene la ejecución aquí
+                default:
+                    header("Location: inicio.php");
+                    break;
+            }
+            exit(); 
+        } else {
+            header("Location: inicio.php?error=ContrasenaIncorrecta");
+            exit();
+        }
+    } else {
+        header("Location: inicio.php?error=UsuarioNoEncontrado");
+        exit();
+    }
+    $stmt->close();
+}
+$conexion->close();
+?><?php
+session_start();
+
+// 1. Configuración de errores (ACTÍVALO para ver el error real en pantalla)
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+$host = "localhost";
+$usuario = "admin_web";
+$clave = "Biblioteca2026";
+$bd = "sistemabiblioteca";
+$puerto = 3306; 
+
+// 2. Conexión
+$conexion = new mysqli($host, $usuario, $clave, $bd, $puerto);
+
+if ($conexion->connect_error) {
+    die("Error de conexión: " . $conexion->connect_error);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user_input = $_POST['username'];
+    $pass_input = $_POST['contrasena'];
+
+    $sql = "SELECT U.id_usuario, U.contrasena, U.id_rol, R.nombre AS nombre_rol 
+            FROM Usuario U 
+            INNER JOIN Rol R ON U.id_rol = R.id_rol 
+            WHERE U.username = ?";
+
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("s", $user_input);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+
+    if ($resultado->num_rows === 1) {
+        $usuario_db = $resultado->fetch_assoc(); // Cambié el nombre para no confundir con la variable $usuario del inicio
+
+        if (password_verify($pass_input, $usuario_db['contrasena'])) {
+            
+            $_SESSION['usuario_id'] = $usuario_db['id_usuario'];
+            $_SESSION['id_rol']     = $usuario_db['id_rol'];
+            $_SESSION['nombre_rol'] = $usuario_db['nombre_rol'];
+
+            // 3. Redirección corregida
+            switch ($usuario_db['id_rol']) {
+                case 1: // Staff
+                case 2: // Profesor
+                case 3: // Alumno
+                    header("Location: index.php");
+                    break; // Ahora sí detiene la ejecución aquí
+                default:
+                    header("Location: inicio.php");
+                    break;
+            }
+            exit(); 
+        } else {
+            header("Location: inicio.php?error=ContrasenaIncorrecta");
+            exit();
+        }
+    } else {
+        header("Location: inicio.php?error=UsuarioNoEncontrado");
+        exit();
+    }
+    $stmt->close();
+}
+$conexion->close();
+?>

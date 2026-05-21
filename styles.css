@@ -1,0 +1,425 @@
+/* Fuente personalizada */
+
+@font-face {
+  font-family: 'CustomFont';
+    src: url("fonts/Inter-VariableFont_opsz\,wght.ttf") format("truetype"),
+       url("fonts/Inter-Italic-VariableFont_opsz\,wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+
+}
+
+/* Estilos generales: body, nav*/
+body{
+    background-color: #e8e3e3;
+    font-family: 'CustomFont';
+    background-image: url('images/');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-attachment: fixed;
+    padding-top:90px;
+}
+
+
+nav{
+    font-size:20px;
+    background-color: #2e3d4e;
+    text-align: center;
+    position: fixed;
+    top:0; 
+    left:0;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+nav ul{
+    list-style-type: none;
+}
+
+nav li{
+    display: inline;
+}
+
+nav a{
+    color: #ffffff;
+    text-decoration: none;
+    margin:25px;
+}
+
+.menubib{
+     font-size:18px;
+     padding:3.5px;
+}
+
+/* Botón de cerrar sesión */
+nav button {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+/*Botones generales*/
+.btn{
+    background-color: #ffffff;
+    color: #2e3d4e;
+    border: 2px solid #2e3d4e;
+    padding: 8px 14px;
+    border-radius: 12px;
+    font-family: 'CustomFont', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn2{
+    background-color: #ffffff;
+    color: #2e3d4e;
+    border: 2px solid #2e3d4e;
+    padding: 8px 14px;
+    border-radius: 12px;
+    font-family: 'CustomFont', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btnomar{
+    background-color: #ffffff;
+    color: #2e3d4e;
+    border: 2px solid #2e3d4e;
+    padding: 8px 14px;
+    border-radius: 12px;
+    font-family: 'CustomFont', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+    margin-right:150px;
+}
+
+.btn:hover, .btnomar:hover, .btn2:hover{
+    background-color: #2e3d4e;
+    color: #ffffff;
+    box-shadow: 0 4px 10px #2e3d4e2e;
+}
+.btn:focus, .btnomar:focus, .btn2:focus{
+    outline: none;
+    box-shadow: 0 0 0 3px #2e3d4e2e;
+}
+
+/* Imagen del logo */
+
+.centro{
+    position:fixed;
+    left:15px;
+    margin:8px;
+}
+
+/* Texto de inicio.html */
+
+.intro{
+    text-align: center;
+    width: 50%;
+    margin: 80px auto;
+    padding: 5px;
+    border-radius: 10px;
+    color: black;
+}
+
+.reglas{
+    text-align: center;
+    margin: 80px auto;
+    padding: 5px;
+    color: black;
+}
+
+.reglas ul{
+    text-align: left;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/*Tabla de Biblioteca*/
+table{
+    position: relative;
+    margin: 50px auto 20px auto;
+    background-color: black;
+    width: 90%; 
+}
+
+tr{
+    background-color:white;
+}
+
+th, td{
+    padding:15px;
+}
+
+/*Barra de búsqueda*/
+.search-container {
+    text-align: center;
+    margin-top: 100px; 
+}
+
+#search{
+    width: 70%;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid #2e3d4e;
+    border-radius: 15px;
+    outline: none;
+    font-family: 'CustomFont', sans-serif;
+}
+/*Campos de texto*/
+#titulo, #titulo_buscar, #autor, #editorial, #isbn, #categoria, #username, #nombre, #contrasena, #codigo_de_carnet, #apellidos, #clase, #edad, #id_alumnado{
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid #2e3d4e;
+    border-radius: 15px;
+    outline: none;
+    font-family: 'CustomFont', sans-serif;
+}
+
+/* */
+.lista{
+    margin-top:3%;
+    margin-left:3%;
+    font-size:25px;
+}
+
+#categoryMenu{
+    width:70%;
+    background-color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid #2e3d4e;
+    border-radius: 15px;
+    outline: none;
+    font-family: 'CustomFont', sans-serif;
+    margin: 20px auto; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    align-items: center;
+    gap: 10px;
+}
+#categoryMenu label{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/*Containers generales para el diseño de la página*/
+.container{
+    background-color:white;
+    padding: 25px 205px;
+    font-size: 16px;
+    border: 2px solid #2e3d4e;
+    border-radius: 15px;
+    font-family: 'CustomFont', sans-serif;    
+    margin-right:auto;
+    margin-left:auto;
+    width:600px;
+}
+
+.container2{
+    background-color:white;
+    padding: 12px 205px;
+    font-size: 16px;
+    border: 2px solid #2e3d4e;
+    border-radius: 15px;
+    font-family: 'CustomFont', sans-serif;    
+
+}
+
+.container form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+    max-width: 600px; 
+}
+
+.container label { 
+    margin-bottom: 4px; 
+}
+
+/* */
+.titulo-wrapper { 
+    position: relative; 
+    max-width: 600px; 
+}
+
+#titulo-suggestions { 
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    z-index: 1000; 
+    background: #fff; 
+    border: 1px solid #ccc; 
+    display: none; 
+    max-height: 220px; 
+    overflow: auto; 
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12); 
+    margin-top: 6px; 
+}
+
+/* */
+.suggestion-row { 
+    padding: 8px; 
+    cursor: pointer; 
+    border-bottom: 1px solid #eee; 
+}
+
+.suggestion-row:hover { 
+    background: #f5f5f5; 
+}
+/*Container en búsqueda y botón*/
+.container input[type="text"], .container textarea { 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+.container button[type="submit"].btn { 
+    display: block; 
+    margin: 14px;
+    position: relative;
+    left: 70%;
+}
+
+ /* ESTILOS PARA EL GRID DE TARJETAS*/
+        .contenedor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .libro-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .libro-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-imagen {
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+            padding: 15px;
+        }
+
+        .portada-libro {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .card-header-cat {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .cat-icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        .categoria-texto {
+            font-weight: 600;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .card-body-cat {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .libro-titulo {
+            margin: 0 0 12px 0;
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        .libro-info {
+            margin: 8px 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .disponibilidad {
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .card-footer-cat {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #eaeaea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-detalle {
+            background: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .btn-detalle:hover {
+            background: #0056b3;
+        }
+
+        .id-text {
+            color: #888;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .contenedor-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contenedor-grid {
+                grid-template-columns: 1fr;
+            }
+        }

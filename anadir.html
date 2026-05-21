@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil</title>
+    <link rel="icon" href="images/andresmanjonlogo1.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <img class="centro" src="images/andresmanjonlogo2.png" width="130" height="40">
+
+        <ul>
+            <li><a href="inicio.html">Inicio</a></li>
+            <li><a href="biblioteca.php">Biblioteca</a></li>
+            <li><a href="peticion.php">Prestamos</a></li>
+            <li><a href="anadir.html">Añadir</a></li>
+            <li><a href="alumnoslista.php">Lista Alumnado</a></li>
+            <li><a href="perfil.php">Mi Perfil</a></li>
+            <a href="index.php"><button type="button" class="btn">Cerrar Sesión</button></a>
+
+        </ul>
+    </nav>
+
+<div class="container">
+    <h2>Añadir Libro</h2>
+    <form action="anadir_libro.php" method="post">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required placeholder="Mortadelo y Filemón en los JJOO de Barcelona '92">
+
+        <label for="autor">Autor:</label>
+        <input type="text" id="autor" name="autor" required placeholder="Francisco Ibañez">
+
+        <label for="editorial">Editorial:</label>
+        <input type="text" id="editorial" name="editorial" required placeholder="Santillana">
+
+        <label for="isbn">ISBN:</label>
+        <input type="text" id="isbn" name="isbn" required pattern="\d{3}-\d{2}-\d{3}-\d{4}-\d{1}" placeholder="978-84-123-4567-8" maxlength="17">
+
+       
+
+          <label for="categoria">Categoría:</label>
+            <select name="categoria" id="categoria">
+                <option value="verde">Infantil y 1º Ciclo</option>
+                <option value="naranja">2º y 3º Ciclo</option>
+                <option value="cian">Animales y Naturaleza</option>
+                <option value="rojo">Valores</option>
+                <option value="rosa">Emociones</option>
+                <option value="morado">Igualdad</option>
+                <option value="amarillo">Inglés</option>
+                <option value="marron">Colecciones</option>
+                <option value="blanco">Cómics</option>
+                <option value="negro">Música</option>
+            </select>
+        
+        <button type="submit" class="btn">Añadir Libro</button>
+    </form>
+    <form action="anadir_alumno.php" method="post">
+
+        <h2>Añadir Alumno</h2>
+    <form action="anadir_libro.php" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required placeholder="Arturo">
+
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" required placeholder="Roldán Huici">
+
+        <label for="edad">Edad:</label>
+        <input type="text" id="edad" name="edad" required placeholder="18" maxlength="3">
+
+        <label for="clase">Clase del Alumno:</label>
+            <select name="clase" id="clase">
+                <option value="1º Infantil">1º Infantil</option>
+                <option value="2º Infantil">2º Infantil</option>
+                <option value="3º Infantil">3º Infantil</option>
+                <option value="4º Infantil">4º Infantil</option>
+                <option value="1º Primaria">1º Primaria</option>
+                <option value="2º Primaria">2º Primaria</option>
+                <option value="3º Primaria">3º Primaria</option>
+                <option value="4º Primaria">4º Primaria</option>
+                <option value="5º Primaria">5º Primaria</option>
+                <option value="6º Primaria">6º Primaria</option>
+            </select>
+
+        <label for="username">Nombre de Usuario Asignado:</label>
+        <input type="text" id="username" name="username" required placeholder="arturorh01">
+
+        <label for="contrasena">Contraseña Asignada:</label>
+        <input type="text" id="contrasena" name="contrasena" required placeholder="Ejemplo1234#">
+        
+        <label for="codigo_de_carnet">Código de Carnet Asignado:</label>
+        <input type="text" id="codigo_de_carnet" name="codigo_de_carnet" required pattern="[A-Za-z]{3}[0-9]{2}-[0-9]{3}" maxlength="9" placeholder="ARH01-000">
+
+
+
+
+        <button type="submit" class="btn">Añadir Alumno</button>
+    </form>
+</div>
+
+</body>
+</html>

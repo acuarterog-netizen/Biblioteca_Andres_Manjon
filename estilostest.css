@@ -1,0 +1,393 @@
+/* Fuente personalizada */
+@font-face {
+  font-family: 'CustomFont';
+  src: url("fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype"),
+       url("fonts/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+/* Estilos generales del body */
+body {
+  background-color: #e8e3e3;
+  font-family: 'CustomFont', Arial, sans-serif;
+  background-image: url('images/');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-attachment: fixed;
+  padding-top: 90px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Navbar responsive */
+nav {
+  font-size: 1rem; /* Usar rem en lugar de px */
+  background-color: #2e3d4e;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 1rem; /* 10px 16px */
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+nav li {
+  display: inline-block;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  padding: 0.5rem 0.75rem;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #e0e0e0;
+}
+
+/* Botón en navbar */
+nav button {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Botones generales */
+.btn {
+  background-color: #ffffff;
+  color: #2e3d4e;
+  border: 2px solid #2e3d4e;
+  padding: 0.5rem 0.875rem; /* 8px 14px */
+  border-radius: 0.75rem; /* 12px */
+  font-family: 'CustomFont', sans-serif;
+  font-size: 0.9375rem; /* 15px */
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  transition: all 0.15s ease;
+  min-width: fit-content;
+}
+
+.btn:hover {
+  background-color: #2e3d4e;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(46, 61, 78, 0.18);
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(46, 61, 78, 0.18);
+}
+
+/* Logo */
+.centro {
+  position: fixed;
+  left: 1rem; /* 16px */
+  margin: 0rem;
+  margin-left:0.5rem;
+  z-index: 1001;
+}
+
+.centro img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Texto introductorio */
+.intro {
+  text-align: center;
+  width: 90%;
+  max-width: 800px;
+  margin: 5rem auto 2rem; /* 80px auto 32px */
+  padding: 1.5rem;
+  border-radius: 0.625rem; /* 10px */
+  color: black;
+  text-shadow: 2px 2px rgb(178, 185, 214);
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabla responsive */
+table {
+  width: 95%;
+  max-width: 1200px;
+  margin: 3rem auto 1.25rem; /* 50px auto 20px */
+  background-color: #2e3d4e;
+  border-collapse: collapse;
+  border-radius: 0.625rem; /* 10px */
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+tr {
+  background-color: white;
+}
+
+th, td {
+  padding: 1rem; /* 16px */
+  text-align: left;
+  border-bottom: 1px solid #e8e3e3;
+}
+
+/* Hacer tabla responsive */
+@media screen and (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  th, td {
+    min-width: 150px;
+  }
+}
+
+/* Barra de búsqueda */
+.search-container {
+  text-align: center;
+  margin-top: 6.25rem; /* 100px */
+  padding: 0 1rem;
+}
+
+#searchInput {
+  width: 90%;
+  max-width: 600px;
+  padding: 0.75rem 1.25rem; /* 12px 20px */
+  font-size: 1rem; /* 16px */
+  border: 2px solid #2e3d4e;
+  border-radius: 0.9375rem; /* 15px */
+  outline: none;
+  font-family: 'CustomFont', sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Campos de texto generales */
+#titulo, #autor, #editorial, #isbn, #categoria, 
+#username, #nombre, #contrasena, #codigo_de_carnet, 
+#apellidos, #clase, #edad {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75rem 1.25rem; /* 12px 20px */
+  font-size: 1rem; /* 16px */
+  border: 2px solid #2e3d4e;
+  border-radius: 0.9375rem; /* 15px */
+  outline: none;
+  font-family: 'CustomFont', sans-serif;
+  margin: 0.5rem 0;
+}
+
+/* Lista */
+.lista {
+  margin-top: 3%;
+  margin-left: 3%;
+  font-size: 1.5625rem; /* 25px */
+  padding: 0 1rem;
+}
+
+/* Menú de categorías */
+#categoryMenu {
+  width: 90%;
+  max-width: 800px;
+  background-color: white;
+  padding: 0.75rem 1.25rem; /* 12px 20px */
+  font-size: 1rem; /* 16px */
+  border: 2px solid #2e3d4e;
+  border-radius: 0.9375rem; /* 15px */
+  outline: none;
+  font-family: 'CustomFont', sans-serif;
+  margin: 1.25rem auto; /* 20px */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem; /* 10px */
+}
+
+#categoryMenu label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem; /* 6px */
+  white-space: nowrap;
+}
+
+/* Container principal */
+.container {
+  background-color: white;
+  padding: 1.5rem;
+  font-size: 1rem; /* 16px */
+  border: 2px solid #2e3d4e;
+  border-radius: 0.9375rem; /* 15px */
+  font-family: 'CustomFont', sans-serif;
+  gap: 1.25rem; /* 20px */
+  width: 90%;
+  max-width: 800px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* 12px */
+}
+
+.container label {
+  margin-bottom: 0.25rem; /* 4px */
+  font-weight: bold;
+}
+
+/* Wrapper de título */
+.titulo-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+#titulo-suggestions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #fff;
+  border: 1px solid #ccc;
+  display: none;
+  max-height: 220px;
+  overflow: auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  margin-top: 0.375rem; /* 6px */
+  border-radius: 0.5rem; /* 8px */
+}
+
+.suggestion-row {
+  padding: 0.5rem; /* 8px */
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.suggestion-row:hover {
+  background: #f5f5f5;
+}
+
+/* Botón de submit en container */
+.container button[type="submit"].btn {
+  align-self: flex-end;
+  margin: 0.875rem 0; /* 14px */
+  width: auto;
+  min-width: 120px;
+}
+
+/* Media Queries para dispositivos móviles */
+@media screen and (max-width: 768px) {
+  body {
+    padding-top: 120px; /* Más espacio para navbar en móvil */
+  }
+  
+  nav {
+    padding: 0.5rem;
+  }
+  
+  nav ul {
+    gap: 0.25rem;
+  }
+  
+  nav a {
+    margin: 0 0.25rem;
+    padding: 0.375rem 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .intro {
+    width: 95%;
+    margin: 3rem auto 1.5rem;
+    padding: 1rem;
+  }
+  
+  .container {
+    padding: 1rem;
+    width: 95%;
+  }
+  
+  .btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .lista {
+    font-size: 1.25rem; /* 20px */
+    margin-left: 1rem;
+  }
+  
+  /* Ocultar logo en móviles si es muy grande */
+  .centro {
+    position: relative;
+    left: 0;
+    text-align: center;
+    margin: 0 auto 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+  
+  #searchInput,
+  #categoryMenu,
+  .container {
+    width: 95%;
+  }
+  
+  nav {
+    text-align: left;
+    padding-left: 0.5rem;
+  }
+  
+  nav ul {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+  
+  nav button {
+    position: static;
+    transform: none;
+    margin-top: 0.5rem;
+  }
+  
+  /* Stack inputs en móviles */
+  #titulo, #autor, #editorial, #isbn, #categoria, 
+  #username, #nombre, #contrasena, #codigo_de_carnet, 
+  #apellidos, #clase, #edad {
+    max-width: 100%;
+  }
+}
